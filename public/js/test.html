@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        .visible {
+            visibility: hidden
+        }
+        </style>
+        <title>
+            
+        </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="unitTwo">
+                <h2>All open Tasks</h2>
+                <ul>
+                    <li v-for="task in tasks" v-if="!task.completed" v-text="task.description" v-on:click="completeTask(task)"></li>
+                </ul>
+                
+                <h2>All completed Tasks</h2>
+                <ul>
+                    <li v-for="task in incomplete" v-text="task.description"></li>
+                </ul>
+                <input type="text" id="taskInput" v-model="inputField">
+                <button @click="taskClickEvent" :class="switchColor" title="Task hinzufügen">Submit Task</button>
+                </div>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script>
+
+            new Vue({
+                el: '#unitTwo',
+                data: {
+                    message: 'Hallo',
+                    switchColor: 'btn waves-effect waves-light',
+                    tasks: [
+                        { description: 'Go to the Market', completed: false },
+                        { description: 'Do something special', completed: false },
+                        { description: 'Do a Backflip', completed: true },
+                        { description: 'Do nothing', completed: false }
+                    ],
+                    inputField: ''
+                }, 
+                methods: {
+                    taskClickEvent() {
+                        if(this.inputField.length !== 0) {
+                            console.log(this.inputField);
+                            var taskObj = {};
+                            taskObj['description'] = this.inputField;
+                            taskObj['completed'] = false;
+                            this.tasks.push(taskObj);
+                            this.inputField = '';
+                        }
+                    },
+                    completeTask(task){
+
+                        return task.completed = true;
+                        //console.log(task.completed);
+                    }
+                },
+                computed: {
+                    complete() {
+
+                    },
+                    incomplete() {
+                        var vaar = this.tasks.filter(task => task.completed);
+                        console.log( vaar ); 
+                        return vaar;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
