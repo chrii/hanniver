@@ -40,7 +40,6 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-
         request()->validate([
             'product-name' => ['required', 'min:3'],
             'price-wt' => ['required', 'min:3', 'numeric'],

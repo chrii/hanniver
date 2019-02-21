@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="card">
     <div class="card-header">
         <h1>Bearbeiten</h1>
@@ -12,10 +11,11 @@
             <li>{{ $error }}</li>
             @endforeach
         </ul>
-        
+
         <form method="POST" action="/products/{{ $product->product_id }}" required>
             @method('PATCH')
             @csrf
+
             <div class="row">
                 <div class="col">
                     <div class="input-group mb-3">
@@ -24,8 +24,8 @@
                     <div class="input-group mb-3">
                         <input type="text" name="price-wt" value="{{ $product->price_wo_tax }}" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Preis ohne Mehrwertsteuer" required>
                     </div>
-                    
                 </div>
+
                 <div class="col" >
                     <div class="input-group mb-3">
                         <input type="text" name="product-description" value="{{ $product->product_description }}" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Beschreibung" required>
@@ -42,6 +42,7 @@
                 </div>
                 <p>
             </div>
+            
             <button type="submit" class="btn btn-outline-primary">
                     <i class="material-icons float-left">settings</i>
                     Change
@@ -51,5 +52,4 @@
         </form>
     </div>  
 </div>
-
 @endsection
