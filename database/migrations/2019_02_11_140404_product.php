@@ -18,7 +18,7 @@ class Product extends Migration
             $table->string('product_name');
             $table->string('product_description');
             $table->float('price_wo_tax');
-            $table->integer('category');
+            $table->integer('category_id');
             $table->timestamps();
         });
     }
