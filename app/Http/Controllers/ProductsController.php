@@ -16,7 +16,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('product-view', ['products' => $products]);
+        return view('product-views.product-view', ['products' => $products]);
     }
 
     /**
@@ -29,7 +29,7 @@ class ProductsController extends Controller
         $req = request();
         $categorys = Category::all();
 
-        return view('create-products', ['categorys' => $categorys]);
+        return view('product-views.create-products', ['categorys' => $categorys]);
     }
 
     /**
@@ -80,7 +80,7 @@ class ProductsController extends Controller
     {
         $categorys = Category::all();
         $product = Product::findOrFail($products_id);
-        return view('edit-product', [
+        return view('product-views.edit-product', [
             'product' => $product,
             'categorys' => $categorys
         ]);
