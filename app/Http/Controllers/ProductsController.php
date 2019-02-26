@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
+
+    public function __construct () {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -75,6 +80,7 @@ class ProductsController extends Controller
      * @param  \App\Product  $products
      * @return \Illuminate\Http\Response
      */
+
     public function edit($products_id)
     {
         $categorys = Category::all();
