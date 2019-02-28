@@ -44,15 +44,15 @@
                             <select class="custom-select" name="product-category">
                                 <option selected disabled>Kategorie</option>
                                 @foreach($categorys AS $category)
-                                <option name="product-category" value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                                    <option name="product-category" value="{{ $category->category_id }}">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                 </div>            
                 <p>
-                    <button type="submit" class="btn btn-primary active right">Submit</button>
-                    <a href="/products" class="btn btn-primary active right">Zurück</a>
+                    <button type="submit" class="card-link btn-primary btn">Submit</button>
+                    <a href="/products" class="card-link btn-sm">Zurück</a>
                 </p>
             </form>
         </div>

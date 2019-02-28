@@ -47,7 +47,7 @@
                     <i class="material-icons float-left">settings</i>
                     Change
                 </button>
-                <a href="/products" class="btn btn-outline-primary btn-sm">Zurück</a>
+                <a href="/products" class="card-link btn btn-sm">Zurück</a>
             </p>
         </form>
     </div>  

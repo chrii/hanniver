@@ -23,7 +23,7 @@ Route::post('/products', 'ProductsController@store');
 Route::patch('/products/{ id }/edit', 'ProductsController@edit'); */
 Route::resource('/products', 'ProductsController');
 
-Route::get('/categorys', 'CategoryController@index')->middleware('auth');
+Route::get('/categorys', 'CategoryController@index');
 Route::post('/categorys', 'CategoryController@store');
 
 // @TODO
@@ -33,6 +33,9 @@ Route::delete('categorys/{id}', 'CategoryController@destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/users', 'UserController@index');
-Route::get('/users/waiters', 'UserController@waiterIndex');
-Route::get('/users/{$id}/edit', 'UserController@edit');
+Route::post('/users', 'UserController@store');
+Route::get('/users/create', 'UserController@create');
+Route::get('/users/{uid}', 'UserController@show');
+Route::patch('/users/{uid}/edit', 'UserController@edit');

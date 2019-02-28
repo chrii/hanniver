@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
-use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {

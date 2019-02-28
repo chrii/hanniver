@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\UserTypes;
 
 class User extends Authenticatable
 {
@@ -36,5 +37,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $primaryKey = 'id';
+
+    public function usertype() {
+        return $this->hasOne(
+            UserTypes::class,
+            'group_id'
+        );
+    }
 
 }
