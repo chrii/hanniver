@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 
 <div class="container">
@@ -22,7 +21,7 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">E-Mail-Adresse</th>
-                        <th scope="col">Gruppe</th>
+                        <th scope="col">Active</th>
                         <th scope="col">Optionen</th>
                     </tr>
                 </thead>
@@ -31,7 +30,7 @@
                     <tr>
                         <td>{{ $userRow->name }}</td>
                         <td>{{ $userRow->email }}</td>
-                        <td>{{ $user->group_name }}</td>
+                        <td><i class="material-icons {{ $userRow->is_active ? 'online' : 'offline'}}">person</i></td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
