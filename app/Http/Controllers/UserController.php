@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use App\UserTypes;
 
@@ -17,7 +18,7 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index(Request $req){
         $request = request('user-type');
         $table = UserTypes::all();
 
@@ -28,8 +29,6 @@ class UserController extends Controller
     }
 
     public function show($uid) {
-        //TODO:
-        //Password aus dem Query entfernen
         $user = User::where('id', $uid)
                 ->get()
                 ->first();

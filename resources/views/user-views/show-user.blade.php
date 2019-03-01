@@ -31,10 +31,6 @@
                             {{ $user->usertype->group_name }}
                         </li>
                         <li class="list-group-item">
-                            <i class="material-icons {{ $user->is_active ? 'online' : 'offline' }}">person</i>
-                            Status
-                        </li>
-                        <li class="list-group-item">
                             <i class="material-icons left">add_circle</i>
                             Dabei seit: 
                             {{ $user->created_at }}
@@ -44,8 +40,14 @@
                 <div class="col-sm">
                     <ul class="list-group">
                         <li class="list-group-item">
-                        <i class="material-icons">account_balance_wallet</i>
-                        {{ $user->active_bill ?  : 'Keine offene Rechnung' }}
+                            <i class="material-icons {{ $user->has_table ? 'online' : 'offline' }}">person</i>
+                            <a href="/tables/{{ $user->has_table ? $user->has_table : '' }}">
+                                {{ $user->has_table > 0 ? 'Tisch ' . $user->has_table : 'Ist noch keinem Tisch zugewiesen' }}
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="material-icons">account_balance_wallet</i>
+                            {{ $user->active_bill ?  : 'Keine offene Rechnung' }}
                         </li>
                     </ul>
                 </div>

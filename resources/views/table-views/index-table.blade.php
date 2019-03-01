@@ -4,34 +4,36 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h1>User</h1>
+            <h1>Tische</h1>
             <div class="btn-group navbar-right">
                 <button class="btn bmd-btn-fab bmd-btn-fab-sm dropdown-toggle" type="button" id="ex3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">more_vert</i>
                 </button>
                 <div class="dropdown-menu  dropdown-menu-left" aria-labelledby="ex3">
+                    <form method="POST" action="/tables">
+                        @csrf
+                        <button class="dropdown-item" name="new" value="makeTable">Tisch erzeugen</button>
+                    </form>
                     <a href="/users/create"  class="dropdown-item">Nutzer anlegen</a>
-                    <a href="/groups"  class="dropdown-item">Gruppen</a>
                 </div>
             </div>
         </div>
         <div class="card-body">
             <table class="table">
                 <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">E-Mail-Adresse</th>
-                        <th scope="col">Active</th>
-                        <th scope="col">Optionen</th>
-                    </tr>
+                    <th>Tisch Nummer</th>
+                    <th>Geäste am Tisch</th>
+                    <th>Details</th>
                 </thead>
-                @foreach($userdata AS $key => $user)
-                    @foreach($user->userDataByType AS $userRow)
+                <tbody>
+                @foreach($tables AS $table)
                     <tr>
-                        <td>{{ $userRow->name }}</td>
-                        <td>{{ $userRow->email }}</td>
                         <td>
-                            <i class="material-icons {{ $userRow->has_table ? 'online' : 'offline'}}">person</i>
+                            Tisch {{ $table->table_id }}
+                        </td>
+                        <td>
+                            <i class="material-icons {{ $table->userOnTable->count() > 0 ? 'online' : 'offline' }}">person</i> 
+                            {{ $table->userOnTable->count() }}
                         </td>
                         <td>
                             <div class="dropdown">
@@ -39,16 +41,16 @@
                                     <i class="material-icons">more_vert</i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex1">
-                                    <a href="/users/{{ $userRow->id }}" class="dropdown-item">
+                                    <a href="/tables/{{ $table->table_id }}" class="dropdown-item">
                                         <i class="material-icons">view_module</i>
-                                         Übersicht
+                                            Übersicht
                                     </a>
                                 </div>
-                            </div> 
+                            </div>
                         </td>
                     </tr>
-                    @endforeach
                 @endforeach
+                </tbody>
             </table>
         </div>
     </div>

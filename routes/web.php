@@ -39,3 +39,10 @@ Route::post('/users', 'UserController@store');
 Route::get('/users/create', 'UserController@create');
 Route::get('/users/{uid}', 'UserController@show');
 Route::patch('/users/{uid}/edit', 'UserController@edit');
+
+Route::get('/groups', 'GroupController@index');
+Route::post('/groups', 'GroupController@store');
+
+Route::get('/tables', 'TablesController@index');
+Route::post('/tables', 'TablesController@store');
+Route::get('/tables/{id}', 'TablesController@show');

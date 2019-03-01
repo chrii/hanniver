@@ -46,5 +46,8 @@ class User extends Authenticatable
             'group_id'
         );
     }
+    public function userByType() {
+        return $this;
+    }
 
 }

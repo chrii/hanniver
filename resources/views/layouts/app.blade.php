@@ -49,6 +49,9 @@
                                     @endforeach
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/tables">Tische</a>
+                            </li>
 
                         </ul>
                         <!-- Right Side Of Navbar -->

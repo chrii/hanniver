@@ -10,15 +10,6 @@
             <div class="card-body">
                 <div class="row justify-content-center">
                     <div class="col-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <ul>
-                                @foreach($errors->all() AS $error)
-                                    <li>{{$error}}</li>
-                                @endforeach
-                                </ul>
-                            </div>
-                        </div>
                         <form method="POST" action="/users">
                             @csrf  
                             <div class="row">
@@ -55,6 +46,17 @@
                                     </div>
                                 </div>
                             </div>
+                            @if($errors->any())
+                                <div class="card">
+                                    <div class="card-body">
+                                        <ul>
+                                        @foreach($errors->all() AS $error)
+                                            <li>{{$error}}</li>
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>

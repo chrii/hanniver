@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBonsTable extends Migration
+class CreateTablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateBonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bons', function (Blueprint $table) {
-            $table->increments('bon_id');
-            $table->integer('owner_id');
-            $table->integer('bill_id');
-            $table->integer('product_id');
+        Schema::create('tables', function (Blueprint $table) {
+            $table->increments('table_id');
+            $table->integer('users_on_table');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateBonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bons');
+        Schema::dropIfExists('tables');
     }
 }
