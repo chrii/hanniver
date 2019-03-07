@@ -46,3 +46,6 @@ Route::post('/groups', 'GroupController@store');
 Route::get('/tables', 'TablesController@index');
 Route::post('/tables', 'TablesController@store');
 Route::get('/tables/{id}', 'TablesController@show');
+
+Route::get('/upload', 'UploadController@index');
+Route::post('/upload', 'UploadController@store');

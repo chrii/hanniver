@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 
+
 class ProductsController extends Controller
 {
 
@@ -18,10 +19,11 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::all();
-        return view('product-views.product-view', ['products' => $products]);
+
+        return view('product-views.product-view', ['products' => $products/**, 'excel' => $t**/]);
     }
 
     /**
@@ -132,4 +134,6 @@ class ProductsController extends Controller
 
         return redirect('products');
     }
+
+
 }

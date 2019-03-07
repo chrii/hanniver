@@ -13,9 +13,12 @@
                 <div class="dropdown-menu  dropdown-menu-left" aria-labelledby="ex3">
                     <a href="/products/create"  class="dropdown-item">Neues Produkt</a>
                     <a href="/categorys"  class="dropdown-item">Kategorien</a>
+                    <a href="/upload"  class="dropdown-item">Produktliste hochladen</a>
                 </div>
             </div>
-        </div>
+
+
+
         <div class="card-body">
             <table class="table">
                 <thead class="thead-dark">
