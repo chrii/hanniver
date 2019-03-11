@@ -53,7 +53,7 @@
                                         <i class="material-icons">more_vert</i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex1">
-                                        <a href="/upload/edit" class="dropdown-item">
+                                        <a href="/upload?d={{$filename['filename']}}" class="dropdown-item">
                                             <i class="material-icons">arrow_upward</i>
                                             Hochladen
                                         </a>

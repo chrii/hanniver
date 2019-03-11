@@ -49,3 +49,4 @@ Route::get('/tables/{id}', 'TablesController@show');
 
 Route::get('/upload', 'UploadController@index');
 Route::post('/upload', 'UploadController@store');
+Route::get('/upload/unzip', 'UploadController@unzip');
