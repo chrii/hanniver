@@ -21,32 +21,35 @@ Route::get('/products/create', 'ProductsController@create');
 Route::get('/products/{ id }', 'ProductsController@show');
 Route::post('/products', 'ProductsController@store');
 Route::patch('/products/{ id }/edit', 'ProductsController@edit'); */
-Route::resource('/products', 'ProductsController');
-
-Route::get('/categorys', 'CategoryController@index');
-Route::post('/categorys', 'CategoryController@store');
-
-// @TODO
-// Make a Vue Ajax Call 
-Route::get('categorys/{id}/edit', 'CategoryController@edit');
-Route::delete('categorys/{id}', 'CategoryController@destroy');
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
 
-Route::get('/users', 'UserController@index');
-Route::post('/users', 'UserController@store');
-Route::get('/users/create', 'UserController@create');
-Route::get('/users/{uid}', 'UserController@show');
-Route::patch('/users/{uid}/edit', 'UserController@edit');
+Route::middleware('staff')->group(function() {
+    Route::resource('/products', 'ProductsController');
 
-Route::get('/groups', 'GroupController@index');
-Route::post('/groups', 'GroupController@store');
+    Route::get('/categorys', 'CategoryController@index');
+    Route::post('/categorys', 'CategoryController@store');
 
-Route::get('/tables', 'TablesController@index');
-Route::post('/tables', 'TablesController@store');
-Route::get('/tables/{id}', 'TablesController@show');
+    // @TODO
+    // Make a Vue Ajax Call 
+    Route::get('categorys/{id}/edit', 'CategoryController@edit');
+    Route::delete('categorys/{id}', 'CategoryController@destroy');
 
-Route::get('/upload', 'UploadController@index');
-Route::post('/upload', 'UploadController@store');
-Route::get('/upload/unzip', 'UploadController@unzip');
+    Route::get('/users', 'UserController@index');
+    Route::post('/users', 'UserController@store');
+    Route::get('/users/create', 'UserController@create');
+    Route::get('/users/{uid}', 'UserController@show');
+    Route::patch('/users/{uid}/edit', 'UserController@edit');
+
+    Route::get('/groups', 'GroupController@index');
+    Route::post('/groups', 'GroupController@store');
+
+    Route::get('/tables', 'TablesController@index');
+    Route::post('/tables', 'TablesController@store');
+    Route::get('/tables/{id}', 'TablesController@show');
+
+    Route::get('/upload', 'UploadController@index');
+    Route::post('/upload', 'UploadController@store');
+    Route::get('/upload/unzip', 'UploadController@unzip');
+});

@@ -34,26 +34,42 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
+                        @isset(Auth::user()->group)
+                        @if (Auth::user()->group === 2 || Auth::user()->group === 3)
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/products">Produkte</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Mitglieder
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/users">Alle</a>
-                                    @foreach(App\UserTypes::pluck('group_name', 'group_id') AS $key => $type)    
-                                        <a class="dropdown-item" href="/users?user-type={{ $key }}">{{ $type }}</a>
-                                    @endforeach
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/tables">Tische</a>
-                            </li>
+                                <li class="nav-item">
+                                    <!-- Product Link -->
+                                    <a class="nav-link" href="/products">
+                                        Produkte
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <!-- Userlink DROPDOWN-->
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Mitglieder
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/users">Alle</a>
+                                        @foreach(App\UserTypes::pluck('group_name', 'group_id') AS $key => $type)    
+                                            <a class="dropdown-item" href="/users?user-type={{ $key }}">{{ $type }}</a>
+                                        @endforeach
+                                    </div>
+                                </li>
+                                <!-- Tables Link -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/tables">Tische</a>
+                                </li>
+                            
+                            </ul>
+                        @else
+                        
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item"><a href='#' class="nav-link">Bestellen</a></li>
+                                <li class="nav-item"><a href='#' class="nav-link">Specials</a></li>
+                            </ul>
 
-                        </ul>
+                        @endif
+                        @endisset
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
@@ -92,9 +108,7 @@
             <div class="col-8">
                 <main class="py-4">
 
-
                     @yield('content')
-
 
                 </main>
             </div>
