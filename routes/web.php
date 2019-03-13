@@ -53,3 +53,5 @@ Route::middleware('staff')->group(function() {
     Route::post('/upload', 'UploadController@store');
     Route::get('/upload/unzip', 'UploadController@unzip');
 });
+
+Route::get('/menu', 'MenuController@index');

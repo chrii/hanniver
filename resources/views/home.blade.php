@@ -15,11 +15,20 @@
                     @endif
 
                     <p>Hier sind deine persönlichen Daten die wir von dir gespeichert haben:</p>
-                    <ul class="list-group">
-                        <li class="list-group-item"><strong>Name:</strong> {{ Auth::user()->name }}</li>
-                        <li class="list-group-item"><strong>E-Mail-Adresse:</strong> {{ Auth::user()->email }}</li>
-                        <li class="list-group-item"><strong>Dabei seit:</strong> {{ Auth::user()->created_at }}</li>
-                    </ul>
+                    <table class="table">
+                        <tr>
+                            <th>Name:</th>
+                            <td>{{ Auth::user()->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>E-Mail-Adresse</th>
+                            <td>{{ Auth::user()->email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Dabei seit:</th>
+                            <td>{{ Auth::user()->created_at }}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <!-- Begin Card Two -->
@@ -31,7 +40,7 @@
                     @if (Auth::user()->has_table  !== 0)
                         <a href="/tables/{{ Auth::user()->has_table }}">Tisch Nummer {{ Auth::user()->has_table }}</a>
                     @else
-                        Du bist derzeit an keinem Tisch
+                        <a href="/tables">Du bist derzeit an keinem Tisch</a>
                     @endif
                 </div>
             </div>

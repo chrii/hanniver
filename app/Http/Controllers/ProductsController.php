@@ -49,7 +49,7 @@ class ProductsController extends Controller
     {
         request()->validate([
             'product-name' => ['required', 'min:3'],
-            'price-wt' => ['required', 'min:3', 'numeric'],
+            'price-wt' => ['required', 'numeric'],
             'product-category' => ['required', 'integer'] ,
             'product-description' => ['required', 'min:3']
         ]);

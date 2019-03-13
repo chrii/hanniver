@@ -24,3 +24,10 @@
 .offline {
     color: #bf360c;
 }
+
+.menu-pic {
+    height: 500px;
+}
+.card-margin {
+    margin-bottom: 10px;
+}

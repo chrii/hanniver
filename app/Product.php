@@ -17,4 +17,8 @@ class Product extends Model
             'category_id'
         );
     }
+
+    public function category_names() {
+        return Category::all();
+    }
 }

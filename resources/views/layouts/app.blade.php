@@ -12,12 +12,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
+    <!-- Fonts & Styles -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-{{--     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
-    <!-- Styles -->
     <link href="{{ asset('css/bootstrap-material-design.css') }}" rel="stylesheet">
     <link href="{{ asset('css/material-design-icons/iconfont/material-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -34,42 +30,40 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
+                        <!-- Check if User is logged in -->
                         @isset(Auth::user()->group)
-                        @if (Auth::user()->group === 2 || Auth::user()->group === 3)
+                        <!-- This Part of Nav ist only for Waiter and Admin visible -->
                         <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <!-- Product Link -->
-                                    <a class="nav-link" href="/products">
-                                        Produkte
-                                    </a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <!-- Userlink DROPDOWN-->
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Mitglieder
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="/users">Alle</a>
-                                        @foreach(App\UserTypes::pluck('group_name', 'group_id') AS $key => $type)    
-                                            <a class="dropdown-item" href="/users?user-type={{ $key }}">{{ $type }}</a>
-                                        @endforeach
-                                    </div>
-                                </li>
-                                <!-- Tables Link -->
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/tables">Tische</a>
-                                </li>
-                            
-                            </ul>
-                        @else
-                        
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item"><a href='#' class="nav-link">Bestellen</a></li>
-                                <li class="nav-item"><a href='#' class="nav-link">Specials</a></li>
-                            </ul>
-
+                        @if (Auth::user()->group === 2 || Auth::user()->group === 3)
+                            <li class="nav-item">
+                                <!-- Product Link -->
+                                <a class="nav-link" href="/products">
+                                    Produkte
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <!-- Userlink DROPDOWN-->
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Mitglieder
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/users">Alle</a>
+                                    @foreach(App\UserTypes::pluck('group_name', 'group_id') AS $key => $type)    
+                                        <a class="dropdown-item" href="/users?user-type={{ $key }}">{{ $type }}</a>
+                                    @endforeach
+                                </div>
+                            </li>
+                            <!-- Tables Link -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/tables">Tische</a>
+                            </li>
                         @endif
                         @endisset
+                            <!-- This part is visible for all-->
+                            <li class="nav-item"><a href='/menu' class="nav-link">Bestellen</a></li>
+                            <li class="nav-item"><a href='#' class="nav-link">Specials</a></li>
+                        </ul>
+
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
@@ -88,6 +82,7 @@
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/home">Meine Daten</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
