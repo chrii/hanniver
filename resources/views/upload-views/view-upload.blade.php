@@ -15,7 +15,11 @@
                     <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">Bitte beachten</h5>
-                            <p class="card-text">Tabellen müssen im ".ods"-Format hochgeladen werden und dürfen nicht größer als 2MB groß sein. Bitte beachten Sie, dass die Kategorienamen alle in der Datenbank vorhanden sein müssen.</p>
+                            <p class="card-text">
+                                Tabellen müssen im ".ods"-Format hochgeladen werden und dürfen nicht größer als 2MB groß sein. 
+                                Bitte beachten Sie, dass die Kategorienamen alle in der Datenbank vorhanden sein müssen.
+                                Tabellenformat gliedert sich wie folgt auf: Name, Preis, Kategorie, Beschreibung
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -53,7 +57,7 @@
                                         <i class="material-icons">more_vert</i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex1">
-                                        <a href="/upload?d={{$filename['filename']}}" class="dropdown-item">
+                                        <a href="/upload/beam?d={{$filename['filename']}}" class="dropdown-item">
                                             <i class="material-icons">arrow_upward</i>
                                             Hochladen
                                         </a>

@@ -18,6 +18,7 @@ class CreateBonsTable extends Migration
             $table->integer('owner_id');
             $table->integer('bill_id');
             $table->integer('product_id');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }

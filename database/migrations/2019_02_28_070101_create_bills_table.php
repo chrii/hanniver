@@ -17,6 +17,7 @@ class CreateBillsTable extends Migration
             $table->increments('bill_id');
             $table->integer('owner_id');
             $table->integer('bon_id');
+            $table->integer('completed')->default(false);
             $table->timestamps();
         });
     }
