@@ -85,8 +85,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="/products">Produktseite</a>
-                    <a href="/users">User</a>
+                    <a href="/menu">Menükarte</a>
+                    <a href="#">Events</a>
                 </div>
             </div>
         </div>

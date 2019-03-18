@@ -19,15 +19,30 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
+                        @isset(request()->tid)
+                            <th scope="col"></th>
+                        @endisset
                         <th scope="col">Name</th>
                         <th scope="col">E-Mail-Adresse</th>
                         <th scope="col">Active</th>
                         <th scope="col">Optionen</th>
                     </tr>
                 </thead>
+                <form action="/tables/checkin" method="POST">
+                    @csrf
+                    @isset(request()->tid)
+                    <button class="btn" type="submit">Gäste zum Tisch hinzufügen</button>
+                @endisset
                 @foreach($userdata AS $key => $user)
                     @foreach($user->userDataByType AS $userRow)
                     <tr>
+                        @isset(request()->tid)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="checkinTable-{{ $userRow->id }}" value="{{ request()->tid }}">
+                            </div>
+                        </td>
+                        @endisset
                         <td>{{ $userRow->name }}</td>
                         <td>{{ $userRow->email }}</td>
                         <td>
@@ -49,6 +64,7 @@
                     </tr>
                     @endforeach
                 @endforeach
+                </form>
             </table>
         </div>
     </div>

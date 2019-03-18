@@ -41,18 +41,19 @@ Route::middleware('staff')->group(function() {
     Route::get('/users/create', 'UserController@create');
     Route::get('/users/{uid}', 'UserController@show');
     Route::patch('/users/{uid}/edit', 'UserController@edit');
-
+    
     Route::get('/groups', 'GroupController@index');
     Route::post('/groups', 'GroupController@store');
-
+    
     Route::get('/tables', 'TablesController@index');
     Route::post('/tables', 'TablesController@store');
-    Route::get('/tables/{id}', 'TablesController@show');
-
+    Route::post('/tables/checkin', 'TablesController@checkin');
+    
     Route::get('/upload', 'UploadController@index');
     Route::post('/upload', 'UploadController@store');
     Route::get('/upload/unzip', 'UploadController@unzip');
     Route::get('/upload/beam', 'UploadController@storeDatabase');
 });
 
+Route::get('/tables/{id}', 'TablesController@show');
 Route::get('/menu', 'MenuController@index');

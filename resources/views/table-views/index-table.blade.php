@@ -22,7 +22,7 @@
             <table class="table">
                 <thead class="thead-dark">
                     <th>Tisch Nummer</th>
-                    <th>Geäste am Tisch</th>
+                    <th>Gäste am Tisch</th>
                     <th>Details</th>
                 </thead>
                 <tbody>
@@ -45,7 +45,12 @@
                                         <i class="material-icons">view_module</i>
                                             Übersicht
                                     </a>
+                                    <a href="/users?tid={{ $table->table_id }}" class="dropdown-item">
+                                        <i class="material-icons">view_module</i>
+                                        User hinzufügen
+                                    </a>
                                 </div>
+
                             </div>
                         </td>
                     </tr>

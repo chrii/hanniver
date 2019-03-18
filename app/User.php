@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\UserTypes;
+use App\Bill;
 
 class User extends Authenticatable
 {
@@ -47,8 +48,16 @@ class User extends Authenticatable
             'group'
         );
     }
+
     public function userByType() {
         return $this;
     }
 
+    public function allBills() {
+        return $this->hasMany(
+            Bill::class,
+            'owner_id',
+            'id'
+        );
+    }
 }

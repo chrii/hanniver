@@ -30,10 +30,10 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav mr-auto">
                         <!-- Check if User is logged in -->
                         @isset(Auth::user()->group)
                         <!-- This Part of Nav ist only for Waiter and Admin visible -->
-                        <ul class="navbar-nav mr-auto">
                         @if (Auth::user()->group === 2 || Auth::user()->group === 3)
                             <li class="nav-item">
                                 <!-- Product Link -->
