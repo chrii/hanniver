@@ -60,4 +60,10 @@ class User extends Authenticatable
             'id'
         );
     }
+
+    public function latestBill($user = false) {
+        $bills = $this->allBills->find($user);
+        $sorted = $bills->sortBy('created_at')->last();
+        return $sorted;
+    }
 }

@@ -43,7 +43,7 @@
                             </div>
                         </td>
                         @endisset
-                        <td>{{ $userRow->name }}</td>
+                        <td>{{ ucfirst($userRow->name) }}</td>
                         <td>{{ $userRow->email }}</td>
                         <td>
                             <i class="material-icons {{ $userRow->has_table ? 'online' : 'offline'}}">person</i>

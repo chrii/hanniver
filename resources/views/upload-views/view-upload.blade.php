@@ -50,7 +50,7 @@
                     @foreach($filenames AS $filename)
                         <tr>
                             <td>{{ $filename['filename'] }}</td>
-                            <td>{{ $filename['modified'] }}</td>
+                            <td>{{ date('d.m.Y h:i',$filename['modified']) }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

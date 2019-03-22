@@ -50,7 +50,10 @@
                         <strong>Aktuelle Rechnung:</strong>
                 </div>
                 <div class="card-body">
-                        {{ Auth::user()->active_bill === 0 ? 'Derzeit keine offenen Rechnungen' : Auth::user()->active_bill }}
+                    <i class="material-icons">account_balance_wallet</i>
+                    <a href="/bill/{{ Auth::user()->active_bill }}"> 
+                        {{ Auth::user()->active_bill === 0 ? 'Derzeit keine offenen Rechnungen' : 'Rechnung Nummer ' . Auth::user()->active_bill }}
+                    </a>
                 </div>
             </div>
             <!-- Begin Card Four -->
@@ -59,7 +62,13 @@
                     <strong>Vergangene Rechnungen:</strong>
                 </div>
                 <div class="card-body">
-                        {{ Auth::user()->active_bill === 0 ? 'Derzeit keine abgeschlossenen Rechnungen' : Auth::user()->active_bill }}
+                    <ul class="list-group">
+                        @foreach(App\User::find(Auth::user()->id)->allBills AS $bill)
+                        <li class="list-group-item">
+                            <a href="">Rechnung Nummer {{ $bill->bill_id }}</a>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

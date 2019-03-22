@@ -47,7 +47,9 @@
                         </li>
                         <li class="list-group-item">
                             <i class="material-icons">account_balance_wallet</i>
-                            {{ $user->active_bill ?  : 'Keine offene Rechnung' }}
+                                <a href="/bill/{{ Auth::user()->id }}">
+                                {{ $user->active_bill ? 'Rechnung Nummer ' . $user->active_bill : 'Keine offene Rechnung' }}
+                            </a>
                         </li>
                     </ul>
                 </div>

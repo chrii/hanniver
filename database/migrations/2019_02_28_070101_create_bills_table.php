@@ -16,7 +16,7 @@ class CreateBillsTable extends Migration
         Schema::create('bills', function (Blueprint $table) {
             $table->increments('bill_id');
             $table->integer('owner_id');
-            $table->integer('bon_id');
+            $table->integer('table_id');
             $table->integer('completed')->default(false);
             $table->timestamps();
         });
