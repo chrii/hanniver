@@ -7,7 +7,7 @@
         <img class="card-img-top menu-pic" src="storage/pictures/binoculars.jpg" alt="Picture of Goggles and Menu Cards" height="400px">
         <div class="card-body">
             <h5 class="card-title">Unsere Karte</h5>
-            <p class="card-text">Gib über den Schieberegler an wieviel du davon möchtest</p>
+            <p class="card-text">Gib über die Anzeige an wieviel du davon möchtest</p>
             @foreach( $categorys AS $category)
                 <a href="#{{ strtolower($category->category_name) }}" class="btn btn-primary">{{ $category->category_name }}</a>
             @endforeach
@@ -40,7 +40,29 @@
                     </div>
                     <div id="collapse{{ $item->product_id }}" class="collapse" aria-labelledby="heading{{$item->product_id}}" data-parent="#accordion">
                         <div class="card-body">
-                            {{ $item->product_description }}                            
+                            <div class="row">
+                                <div class="col">
+                                    {{ $item->product_description }}
+                                </div>
+                                <div class="col text-right">
+                                    <table id="{{ $item->product_id }}">
+                                        <tr>
+                                            <td>
+                                                <button id="down" class="btn btn-outline-dark"><strong>-</strong></button>
+                                            </td>
+                                            <td>
+                                                <div class="btn box" id="valueBox" name="{{ $item->product_id }}">
+                                                    0
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button id="up" class="btn btn-outline-dark"><strong>+</strong></button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -48,7 +70,12 @@
                 <a href="#top" class="btn btn-primary">Top</a>
             </div>
         </div>
+        <a href="/menu/bon" class="btn btn-outline-primary testButton">Button</a>
     </div>
     @endforeach
 </div>
+@endsection
+
+@section('optional-javascript')
+<script src="{{ asset('js/counter.js') }}"></script>
 @endsection

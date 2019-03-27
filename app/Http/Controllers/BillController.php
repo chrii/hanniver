@@ -13,6 +13,10 @@ class BillController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Collects all active Bons and returns the whole Bill for the user whos logged in
+     * 
+     */
     public function show(Request $request) {
         //if( auth()->user()->id == $request->id){
             $bons = Bill::find(auth()->user()->active_bill);
@@ -25,17 +29,27 @@ class BillController extends Controller
                     if(!array_key_exists($productName, $bill)){
                         $bill[$productName] = [
                             'price' => $productCred->price,
-                            'quantity' => $productCred->quantity,
-                            'quantity_price' => $productCred->quantity_price
+                            'quantity' => $productCred->quantity
                         ];
-                        $bill['summary'] += $bill[$productName]['quantity_price'];
                     } else {
+                        // Adds the Product Quanity
                         $bill[$productName]['quantity'] = $bill[$productName]['quantity'] + $productCred->quantity;
-                        $bill[$productName]['quantity_price'] = $bill[$productName]['quantity_price'] + $productCred->quantity;
                     }
+                    $quantity_price = $bill[$productName]['price'] * $bill[$productName]['quantity'];
+                    $bill[$productName]['quantity_price'] = $quantity_price;
                 }
             }
+
+            // Workaround for Summary
+            // Look through
             $bill = collect($bill);
+            foreach( $bill->pluck('quantity_price') AS $sumKey => $sum ) {
+                if( $sumKey === 0 ) {
+                    continue;
+                } else {
+                    $bill['summary'] += $sum;
+                }
+            }
 /*         } else {
             return redirect('home');
         } */

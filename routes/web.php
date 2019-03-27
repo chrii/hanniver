@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,7 +32,7 @@ Route::middleware('staff')->group(function() {
     Route::post('/categorys', 'CategoryController@store');
 
     // @TODO
-    // Make a Vue Ajax Call 
+    // Make Ajax Calls 
     Route::get('categorys/{id}/edit', 'CategoryController@edit');
     Route::delete('categorys/{id}', 'CategoryController@destroy');
 
@@ -54,8 +54,12 @@ Route::middleware('staff')->group(function() {
     Route::get('/upload/unzip', 'UploadController@unzip');
     Route::get('/upload/beam', 'UploadController@storeDatabase');
     Route::delete('/upload/delete/{id}', 'UploadController@destroy');
+
 });
 
+Route::post('/menu/bon/send', 'MenuController@storeBon');
+Route::post('/menu/bon', 'MenuController@bon');
+Route::get('/menu/bon', 'MenuController@showBon');
 Route::get('/bill/{id}', 'BillController@show');
 Route::get('/tables/{id}', 'TablesController@show');
 Route::get('/menu', 'MenuController@index');

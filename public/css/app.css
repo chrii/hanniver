@@ -31,3 +31,8 @@
 .card-margin {
     margin-bottom: 10px;
 }
+
+.box {
+    text-align: center;
+    width: 40px;
+}
