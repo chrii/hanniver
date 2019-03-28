@@ -62,6 +62,7 @@
                             <!-- This part is visible for all-->
                             <li class="nav-item"><a href='/menu' class="nav-link">Bestellen</a></li>
                             <li class="nav-item"><a href='#' class="nav-link">Specials</a></li>
+                            <li class="nav-item"><a href='/terminal' class="nav-link">Terminal</a></li>
                         </ul>
 
                         <!-- Right Side Of Navbar -->

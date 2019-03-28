@@ -46,7 +46,7 @@
                         <li class="list-group-item">
                                 <i class="material-icons">person</i>
                                 {{ ucfirst($userDetails->name) }}: <br>
-                                <a href="/bill/{{ $userDetails->id }}">
+                                <a href="/bill">
                                     Aktuelle Rechnung {{ $userDetails->active_bill }}
                                 </a>
                         </li>

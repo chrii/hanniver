@@ -67,10 +67,10 @@
                     </div>
                 </div>
                 @endforeach
-                <a href="#top" class="btn btn-primary">Top</a>
             </div>
+            <a href="/menu/bon" class="btn btn-primary btn-raised testButton">Jetzt zur Bestellung</a>
         </div>
-        <a href="/menu/bon" class="btn btn-outline-primary testButton">Button</a>
+        <a href="#top" class="btn btn-secondary btn-raised">Top</a>
     </div>
     @endforeach
 </div>

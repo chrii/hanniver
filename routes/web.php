@@ -11,9 +11,14 @@ use Illuminate\Http\Request;
 |
 */
 
+/**
+ * Public Routes 
+ * These are accessible without any authorization
+ */
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/menu', 'MenuController@index');
 
 
 /* Route::get('/products', 'ProductsController@index');
@@ -25,6 +30,9 @@ Route::patch('/products/{ id }/edit', 'ProductsController@edit'); */
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
+/**
+ * These routes are only accessible from Admin and Waiter (Kellner)
+ */
 Route::middleware('staff')->group(function() {
     Route::resource('/products', 'ProductsController');
 
@@ -55,11 +63,18 @@ Route::middleware('staff')->group(function() {
     Route::get('/upload/beam', 'UploadController@storeDatabase');
     Route::delete('/upload/delete/{id}', 'UploadController@destroy');
 
+    Route::get('/terminal', 'TerminalController@index');
+
 });
 
+/**
+ * User Routes
+ * Controlled by auth Middleware in the Controller themself
+ */
 Route::post('/menu/bon/send', 'MenuController@storeBon');
 Route::post('/menu/bon', 'MenuController@bon');
 Route::get('/menu/bon', 'MenuController@showBon');
-Route::get('/bill/{id}', 'BillController@show');
+
 Route::get('/tables/{id}', 'TablesController@show');
-Route::get('/menu', 'MenuController@index');
+
+Route::get('/bill', 'BillController@show');

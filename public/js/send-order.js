@@ -6,7 +6,12 @@ $.ajaxSetup({
     }
 });
 
-
+/** 
+ * Post final Json String to MenuController storeBon
+ * @response json
+ * return:true/false
+ * bill_id:{ id from active bill of the user }
+ */
 $('#send-order').on('click', function() {
     event.preventDefault();
     $.ajax({
@@ -16,7 +21,7 @@ $('#send-order').on('click', function() {
             var json = JSON.parse(response);
             if( json.return ){
                 console.log(json.return);
-                window.location = 'http://localhost:8888/bill/'+json.bill_id;
+                window.location = 'http://localhost:8888/bill/';
             } else {
                 alert(response.code);
             }

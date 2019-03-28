@@ -36,6 +36,7 @@
                 <div class="card-header">
                     <strong>Derzeit bist du an Tisch:</strong>
                 </div>
+                <!-- Get active Table -->
                 <div class="card-body">
                     @if (Auth::user()->has_table  !== 0)
                         <a href="/tables/{{ Auth::user()->has_table }}">Tisch Nummer {{ Auth::user()->has_table }}</a>
@@ -49,9 +50,10 @@
                 <div class="card-header">
                         <strong>Aktuelle Rechnung:</strong>
                 </div>
+                <!-- Shows active Bill -->
                 <div class="card-body">
                     <i class="material-icons">account_balance_wallet</i>
-                    <a href="/bill/{{ Auth::user()->active_bill }}"> 
+                    <a href="/bill"> 
                         {{ Auth::user()->active_bill === 0 ? 'Derzeit keine offenen Rechnungen' : 'Rechnung Nummer ' . Auth::user()->active_bill }}
                     </a>
                 </div>
@@ -61,9 +63,10 @@
                 <div class="card-header">
                     <strong>Vergangene Rechnungen:</strong>
                 </div>
+                <!-- Lists all Bills from the past -->
                 <div class="card-body">
                     <ul class="list-group">
-                        @foreach(App\User::find(Auth::user()->id)->allBills AS $bill)
+                        @foreach(App\User::find(Auth::user()->id)->allBills->where('completed', true) AS $bill)
                         <li class="list-group-item">
                             <a href="">Rechnung Nummer {{ $bill->bill_id }}</a>
                         </li>

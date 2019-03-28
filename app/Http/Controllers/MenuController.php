@@ -82,13 +82,17 @@ class MenuController extends Controller
         }
         return redirect('menu');
     }
+
+    /**
+     * Gets the AJAX Request from menu/bon/send, creates a new record and stores the saved cookie JSON at the Bon Table 
+     */
     public function storeBon(Request $request) {
         if($request->ajax()) {
             $user = auth()->user();
+            //Asks $_COOKIE['bonString']
             if( \Cookie::get('bonString') !== null) {
                 $cookie = \Cookie::get('bonString');
                 $cookieCollection = collect(json_decode($cookie));
-
                 if( $user->has_table !== 0 && $user->has_bill !== 0 ){
                     $bon = Bon::create([
                         'owner_id' => $user->id,
@@ -103,6 +107,21 @@ class MenuController extends Controller
                 return '{return: "false",code:"There is no Cookie to hanlde"}';
             }
         }
-
     }
 }
+
+/**
+ * Bon::create(); is a Laravel build in function from the eloquent Collection which does a PDO prepared Statement
+ * i.e.:
+ * $stmt->prepare('INSERT INTO ’bon‘ (owner_id, bill_id, product_string) VALUES (:owner, :bill, :product)');
+ * $stmt->bindParam(':name', $attrib['owner']);
+ * $stmt->bindParam(':bill', $attrib['bill']);
+ * $stmt->bindParam(':product', $attrib['product']);
+ * 
+ * $attrib = [
+ *      'name' => $user->id,
+ *      'bill' => $user->active_bill,
+ *      'product' => $cookie
+ * ];
+ * $stmt->execute();
+ */

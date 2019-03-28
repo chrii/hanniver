@@ -15,7 +15,6 @@ class BillController extends Controller
 
     /**
      * Collects all active Bons and returns the whole Bill for the user whos logged in
-     * 
      */
     public function show(Request $request) {
         //if( auth()->user()->id == $request->id){

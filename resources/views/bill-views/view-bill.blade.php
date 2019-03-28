@@ -41,9 +41,21 @@
                         </tr>
                     </table>
                 </div>
-                <div class="col"></div>
+                <div class="col">
+                        <h1>Einzelrechnungen</h1>
+                        <ul>
+                            <!-- @TODO This gets an own Model Method -->
+                            @foreach($bons->getBons AS $bon)
+                            <li>
+                                **Placeholder**
+                                {{ $bon->product_string }}
+                            </li>
+                            @endforeach
+                        </ul>
+                </div>
             </div>
-            <a href="/home" class="btn">Zurück</a>
+            <a href="/home" class="btn">Home</a>
+            <a href="/table/{{ Auth::user()->active_table }}" class="btn btn-outline-primary">Zum Tisch</a>
         </div>
     </div>
 </div>

@@ -11,6 +11,11 @@ class Bill extends Model
     protected $fillable = ['owner_id', 'bon_id', 'completed', 'table_id'];
     protected $primaryKey = 'bill_id'; 
 
+    /**
+     * hasMany is the Eloquent Version for a 1:n relation
+     * i.e.: 
+     * 'SELECT * FROM bons INNER JOIN bills WHERE bons.bill_id=bills.bill_id'
+     */
     public function getBons() {
         return $this->hasMany(
             Bon::class,
@@ -26,14 +31,14 @@ class Bill extends Model
      */
     public function decodeBonString($rawJsonString) {
         $jsonDec = collect(json_decode($rawJsonString));
-
+        
         $productsDecoded = [];
         foreach( $jsonDec AS $productId => $quantity) {
             $product = Product::find($productId);
             $priceTax = ($product->price_wo_tax /100)*20 + $product->price_wo_tax;
             $priceTax = round($priceTax, 1);
             $quantityPrice = $priceTax * $quantity;
-            $productsDecoded[$product->product_name] = ['price' => $priceTax, 'quantity' => $quantity, 'quantity_price' => $quantityPrice];
+            $productsDecoded[$product->product_name] = ['price' => (string)$priceTax, 'quantity' => $quantity, 'quantity_price' => (string)$quantityPrice];
         }
         $json = json_encode($productsDecoded);
         return $json;
