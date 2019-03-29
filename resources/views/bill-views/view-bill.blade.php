@@ -55,7 +55,7 @@
                 </div>
             </div>
             <a href="/home" class="btn">Home</a>
-            <a href="/table/{{ Auth::user()->active_table }}" class="btn btn-outline-primary">Zum Tisch</a>
+            <a href="/tables/{{ Auth::user()->has_table }}" class="btn btn-outline-primary">Zum Tisch</a>
         </div>
     </div>
 </div>

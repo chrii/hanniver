@@ -29,6 +29,9 @@ class TablesController extends Controller
         return redirect('tables');
     }
 
+    /** 
+     * Returns the whole Tables Bill
+     */
     public function show(Request $request, $id) {
         $table = Tables::find($id);
         $array = [];
@@ -36,24 +39,31 @@ class TablesController extends Controller
         $getBonStrings = $table->getBills->pluck('product_string');
         foreach($getBonStrings AS $bon) {
             $json = collect(json_decode(Bill::first()->decodeBonString($bon)));
+
             foreach( $json AS $productName => $productCred) {
                 if(!array_key_exists($productName, $array)){
+
                     $array[$productName] = [
-                        'price' => $productCred->price,
-                        'quantity' => $productCred->quantity,
-                        'quantity_price' => $productCred->quantity_price
+                        'price' => (float)$productCred->price,
+                        'quantity' => (float)$productCred->quantity,
+                        'quantity_price' => ($productCred->price * $productCred->quantity)
                     ];
+
                     $array['summary'] += $array[$productName]['quantity_price'];
+
                 } else {
                     $array[$productName]['quantity'] = $array[$productName]['quantity'] + $productCred->quantity;
-                    $array[$productName]['quantity_price'] = $array[$productName]['quantity_price'] + $productCred->quantity;
+                    $array[$productName]['quantity_price'] = $array[$productName]['quantity_price'] * $array[$productName]['quantity'];
                 }
             }
         }
-        //$array['summary'] = number_format($array['summary'], 2, ',', '');
         return view('table-views.show-table', ['table' => $table, 'summary' => $array]);
     }
 
+
+    /**
+     * Books User on Table and creates Bill
+     */
     public function checkin(Request $request) {
         foreach( $request->all() AS $requestKey => $requestValue ) {
             $splitted = explode('-', $requestKey);
@@ -87,6 +97,5 @@ class TablesController extends Controller
             'table_id' => $table,
             'completed' => false
         ])->save();
-
     }
 }
