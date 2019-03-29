@@ -23,12 +23,12 @@
                     <td>{{ $category->category_name }}</td>
                     <td>{{ $category->category_description }}</td>
                     <td>
-                        <a href="/category/{{ $category->category_id }}/edit" class="btn btn-dark">
+                        <a href="/categorys/{{ $category->category_id }}/edit" class="btn btn-dark">
                             <i class="material-icons">settings</i>
                         </a>
                     </td>
                     <td>
-                        <form method="POST" action="/category/{{ $category->category_id }}">
+                        <form method="POST" action="/categorys/{{ $category->category_id }}">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-warning">

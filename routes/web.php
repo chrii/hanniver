@@ -36,12 +36,13 @@ Auth::routes();
 Route::middleware('staff')->group(function() {
     Route::resource('/products', 'ProductsController');
 
+    Route::get('categorys/{id}/edit', 'CategoryController@edit');
     Route::get('/categorys', 'CategoryController@index');
     Route::post('/categorys', 'CategoryController@store');
+    Route::patch('/categorys/{id}/update', 'CategoryController@update');
 
     // @TODO
     // Make Ajax Calls 
-    Route::get('categorys/{id}/edit', 'CategoryController@edit');
     Route::delete('categorys/{id}', 'CategoryController@destroy');
 
     Route::get('/users', 'UserController@index');
